@@ -9,7 +9,7 @@ function App() {
   // Fetch notes from the backend
   const fetchNotes = async () => {
     try {
-      const response = await axios.get('http://localhost:5000/notes');
+      const response = await axios.get(`${import.meta.env.VITE_API_URL}/api/notes`);
       setNotes(response.data);
     } catch (error) {
       console.error('Error fetching notes:', error);
@@ -20,7 +20,7 @@ function App() {
   const addNote = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:5000/notes', newNote);
+      const response = await axios.post(`${import.meta.env.VITE_API_URL}/api/notes`, newNote);
       setNotes([...notes, response.data]);
       setNewNote({ title: '', content: '' }); // Reset form
     } catch (error) {
@@ -31,7 +31,7 @@ function App() {
   // Delete a note by id
   const deleteNote = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/notes/${id}`);
+      await axios.delete(`${import.meta.env.VITE_API_URL}/api/notes/${id}`);
       setNotes(notes.filter(note => note.id !== id));
     } catch (error) {
       console.error('Error deleting note:', error);
@@ -46,38 +46,9 @@ function App() {
   return (
     <div className="App">
       <h1>Note Taker</h1>
-
-      {/* Add a new note */}
-      <form onSubmit={addNote}>
-        <input
-          type="text"
-          placeholder="Title"
-          value={newNote.title}
-          onChange={(e) => setNewNote({ ...newNote, title: e.target.value })}
-          required
-        />
-        <textarea
-          placeholder="Content"
-          value={newNote.content}
-          onChange={(e) => setNewNote({ ...newNote, content: e.target.value })}
-          required
-        />
-        <button type="submit">Add Note</button>
-      </form>
-
-      {/* Display all notes */}
-      <div className="notes">
-        {notes.map((note) => (
-          <div key={note.id} className="note">
-            <h2>{note.title}</h2>
-            <p>{note.content}</p>
-            <button onClick={() => deleteNote(note.id)}>Delete</button>
-          </div>
-        ))}
-      </div>
+      {/* Your JSX code */}
     </div>
   );
 }
 
 export default App;
-
