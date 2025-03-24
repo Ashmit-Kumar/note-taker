@@ -2,7 +2,7 @@ services:
   app:
     build:
       context: .  # Use the current directory for the build context
-      dockerfile: Dockerfile  # Specify the Dockerfile (optional, as it's the default name)
+      dockerfile: dockerfile  # Specify the Dockerfile (optional, as it's the default name)
     ports:
       - "80:80"  # Map the container's port 80 to the host's port 80
     environment:
