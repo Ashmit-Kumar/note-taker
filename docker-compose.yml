@@ -1,12 +1,15 @@
+version: '3.8'
+
 services:
   app:
     build:
       context: .  # Use the current directory for the build context
       dockerfile: dockerfile  # Specify the Dockerfile (optional, as it's the default name)
+    image: note-frontend
     ports:
       - "80:80"  # Map the container's port 80 to the host's port 80
-    environment:
-      - VITE_API_URL=${VITE_API_URL}  # Use the environment variable for the API URL
+    env_file:
+      - .env  # Load environment variables from .env file
     volumes:
       - .:/app  # Mount the current directory to the /app directory in the container (optional, for development)
     restart: unless-stopped  # Ensure the container restarts automatically if it crashes
