@@ -6,8 +6,6 @@ services:
       context: .  # Use the current directory for the build context
       dockerfile: dockerfile  # Specify the Dockerfile (optional, as it's the default name)
     image: note-frontend
-    ports:
-      - "80:80"  # Map the container's port 80 to the host's port 80
     env_file:
       - .env  # Load environment variables from .env file
     volumes:
